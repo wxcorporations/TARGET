@@ -1,0 +1,50 @@
+// [
+//   {
+//     codigoProduto: 101,
+//     descricaoProduto: "Caneta Azul",
+//     estoque: 150,
+//     unidade: [
+//       { unidade: "UN", fator: 1 },
+//       { unidade: "CX", fator: 12 }
+//     ]
+//   },
+//   {
+//     codigoProduto: 102,
+//     descricaoProduto: "Caderno Universitário",
+//     estoque: 75,
+//     unidade: [
+//       { unidade: "UN", fator: 1 },
+//       { unidade: "CX", fator: 10 }
+//     ]
+
+//   },
+//   {
+//     codigoProduto: 103,
+//     descricaoProduto: "Borracha Branca",
+//     estoque: 200,
+//     unidade: [
+//       { unidade: "UN", fator: 1 },
+//       { unidade: "DP", fator: 5 },
+//       { unidade: "CX", fator: 20 }
+//     ]
+//   },
+//   {
+//     codigoProduto: 104,
+//     descricaoProduto: "Lápis Preto HB",
+//     estoque: 320,
+//     unidade: [
+//       { unidade: "UN", fator: 1 },
+//       { unidade: "DP", fator: 6 },
+//       { unidade: "CX", fator: 24 }
+//     ]
+//   },
+//   {
+//     codigoProduto: 105,
+//     descricaoProduto: "Marcador de Texto Amarelo",
+//     estoque: 90,
+//     unidade: [
+//       { unidade: "UN", fator: 1 },
+//       { unidade: "CX", fator: 6 }
+//     ]
+//   }
+// ]
