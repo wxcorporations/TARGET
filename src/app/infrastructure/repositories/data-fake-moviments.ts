@@ -6,7 +6,7 @@ import { IProduct } from '../../domain/product';
 const CONFIG = {
     DATE_INIT: '2020-01-01',
     DATE_LIMIT: '2025-12-31',
-    QTD_MIN: 1,
+    QTD_MIN: -1000,
     QTD_LIMIT: 1000
 }
 
