@@ -2,16 +2,42 @@
     <div class="container">
 
         <mat-toolbar>
-            <button matIconButton class="example-icon" aria-label="Example icon-button with menu icon">
-                <mat-icon (click)="toggleMenu()">menu</mat-icon>
-            </button>
             <span>Target Sistemas</span>
-            
+
             <span class="example-spacer"></span>
-            
-            <span class="me-2"><a href="/sales">Sales</a></span>
-            <span class="me-2"><a href="/commissions">Commissions</a></span>
+
+            <div class="hidden lg:block">
+                <span class="mr-4 text-base hover:rounded-[25px] hover:bg-red-500 px-8 py-2 hover:text-white"><a
+                        href="/sales">Sales</a></span>
+                <span class="mr-4 text-base hover:rounded-[25px] hover:bg-red-500 px-8 py-2 hover:text-white"><a
+                        href="/commissions">Commissions</a></span>
+                <span class="mr-4 text-base hover:rounded-[25px] hover:bg-red-500 px-8 py-2 hover:text-white"><a
+                        href="/stock">Estoque</a></span>
+            </div>
+
+            <button class="lg:hidden" matIconButton [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <span class="me-2"><a href="/sales">Vendas</a></span>
+                    <mat-icon>point_of_sale</mat-icon>
+                </button>
+
+                <button mat-menu-item>
+                    <span class="me-2"><a href="/commissions">Comissões</a></span>
+                    <mat-icon>paid</mat-icon>
+                </button>
+
+                <button mat-menu-item>
+                    <span class="me-2"><a href="/stock">Estoque</a></span>
+                    <mat-icon>inventory</mat-icon>
+                </button>
+            </mat-menu>
         </mat-toolbar>
-        
+
+
+
     </div>
 </div>
