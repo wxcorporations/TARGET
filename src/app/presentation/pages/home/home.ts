@@ -1,13 +1,14 @@
 import { LiveAnnouncer } from  '@angular/cdk/a11y' ;
 import { AfterViewInit , Component , ViewChild , inject} from  '@angular/core' ;
 import { MatSort , Sort , MatSortModule } from  '@angular/material/sort' ;
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableDataSource , MatTableModule } from  '@angular/material/table' ;
 
 @Component({
   selector: 'app-home',
   styleUrl: './home.css',
   templateUrl: './home.html',
-  imports: [MatTableModule, MatSortModule],
+  imports: [MatTableModule, MatSortModule, MatPaginatorModule],
 })
 export class Home {
   private _liveAnnouncer = inject(LiveAnnouncer);
@@ -16,9 +17,11 @@ export class Home {
   dataSource = new MatTableDataSource(ESTOQUE);
 
   @ViewChild(MatSort) sort?: MatSort;
+   @ViewChild(MatPaginator) paginator?: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   announceSortChange(sortState: Sort) {
@@ -30,14 +33,12 @@ export class Home {
   }
 }
 
-
 export interface IProductForTemplate {
   codigo_produto: number,
   descricao_produto: string,
   estoque: number,
   unidade: string,
 }
-
 
 const ESTOQUE = [
 {
