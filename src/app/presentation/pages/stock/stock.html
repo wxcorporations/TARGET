@@ -6,18 +6,14 @@
         </div>
 
         <div class="row my-5">
+            <h2 class="my-8 text-2xl">Incluir nova movimentação</h2>
             <app-form-stock-include></app-form-stock-include>
         </div>
-
-        <div class="row mb-5">
-
-        </div>
-
 
         <!-- TABELA -->
         <div class="overflow-x-auto">
 
-            <h2 class="my-8 text-2xl">Movimentações</h2>
+            <h2 class="my-8 text-2xl">Lista de movimentações</h2>
 
             <table mat-table [dataSource]="dataSourceMove" matSort (matSortChange)="announceSortChange($event)"
                 class="">
@@ -38,9 +34,9 @@
 
                 <ng-container matColumnDef="create_at">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by create_at">
-                        Estoque
+                        Data de criação
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{element.create_at}} </td>
+                    <td mat-cell *matCellDef="let element"> {{ formateDate(element.create_at) }} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="cod_product">

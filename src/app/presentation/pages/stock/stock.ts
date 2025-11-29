@@ -7,10 +7,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 
 import { FormStockInclude } from '../../ui/form-stock-include/form-stock-include';
-
-import { DataFakerMoviments } from '../../../infrastructure/repositories/data-fake-moviments';
 import { LocalStorageRepository } from '../../../infrastructure/repositories/local-storage-repository';
-import { IMovement } from '../../../domain/moviment';
 
 
 @Component({
@@ -24,7 +21,7 @@ export class Stock {
   private _liveAnnouncer = inject(LiveAnnouncer);
 
 
-  displayedColumnsMove: string[] = ['id', 'description', 'create_at', 'cod_product', 'qtd', 'actions'];
+  displayedColumnsMove: string[] = ['id', 'create_at', 'description', 'cod_product', 'qtd', 'actions'];
   dataSourceMove = new MatTableDataSource();
 
   ngOnInit(): void {
@@ -53,6 +50,11 @@ export class Stock {
 
   doubleClick(data: string) {
     console.log(data)
+  }
+
+
+  formateDate(value: string): string {
+    return value.replace(/(\d{4})-(\d{2})-(\d{2})(.*)/, '$1-$2-$3')
   }
 }
 
