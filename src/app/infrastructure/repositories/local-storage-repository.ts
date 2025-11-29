@@ -1,6 +1,6 @@
 // Tipo base: precisa ter um id numérico
 export interface Base {
-    id: number;
+    id: number | string;
 }
 
 export class LocalStorageRepository {
@@ -45,7 +45,7 @@ export class LocalStorageRepository {
         }
     }
 
-    remove(id: number): void {
+    remove(id: string): void {
         const list = this.load();
         const filtered = list.filter((i: Base) => i.id !== id);
         this.save(filtered);

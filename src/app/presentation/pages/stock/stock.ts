@@ -61,10 +61,14 @@ export class Stock {
     };
 
     this.localStoreMoviments?.add(_data)
+    this.dataSourceMove.data = this.localStoreMoviments?.getAll() || []
   }
 
-  remove() {
+  remove(id: string): void {
+    alert('voce tem certeza')
+    this.localStoreMoviments?.remove(id)
 
+    this.dataSourceMove.data = this.localStoreMoviments?.getAll() || []
   }
 }
 

@@ -58,7 +58,7 @@
                         Acões
                     </th>
                     <td mat-cell *matCellDef="let element">
-                        <mat-icon class="" (click)="doubleClick(`excluir => ${element.id}`)">
+                        <mat-icon class="" (click)="remove(element.id)">
                             delete
                         </mat-icon>
                     </td>
