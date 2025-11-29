@@ -19,9 +19,7 @@
             <mat-label>Produto</mat-label>
             <mat-select [(ngModel)]="selectedProductId">
                 @for (item of products; track item.id) {
-                <mat-option value="item.id">{{item.name}}</mat-option>
-                } @empty {
-                <mat-option value="0"> Sem produtos </mat-option>
+                <mat-option value="{{item.id}}">{{item.name}}</mat-option>
                 }
             </mat-select>
         </mat-form-field>
@@ -37,9 +35,8 @@
     </div>
 
     <div class="w-full flex justify-center lg:justify-end">
-        <button matButton="elevated" aria-label="Botão de cadastrar nova movimentação">
+        <button matButton="elevated" aria-label="Botão de cadastrar nova movimentação" (click)="emitSave()">
             Salvar
-            <!-- <mat-icon>save</mat-icon> -->
         </button>
     </div>
 </div>

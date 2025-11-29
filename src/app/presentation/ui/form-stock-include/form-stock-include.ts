@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, Output, EventEmitter } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, MinLengthValidator, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -31,6 +31,8 @@ const DESCRIPTIONS = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormStockInclude {
+  @Output() save = new EventEmitter<any>();
+
   products = DATA_PRODUCT
 
   readonly idmove = uuid()
@@ -42,8 +44,8 @@ export class FormStockInclude {
     Validators.maxLength(DESCRIPTIONS.MAX_CHAR)
   ]);
   readonly qtd = new FormControl(0, [Validators.required]);
-  readonly product = new FormControl(0, [Validators.required]);
-  readonly selectedProductId = 0;
+  readonly product = new FormControl({}, [Validators.required]);
+  selectedProductId = 0;
 
   errorMessageQtd = signal('');
   errorMessageProduct = signal('');
@@ -78,6 +80,17 @@ export class FormStockInclude {
       this.errorMessageProduct.set(`Quantidade maxima de caracteres ${DESCRIPTIONS.MAX_CHAR}`)
     }
 
+  }
+
+  emitSave() {
+    const data = {
+      id: this.idmove,
+      decription: this.description.value,
+      id_product: this.selectedProductId,
+      qtd: this.qtd.value
+
+    }
+    this.save.emit(data)
   }
 }
 
