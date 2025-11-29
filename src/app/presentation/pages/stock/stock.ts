@@ -19,6 +19,7 @@ import { LocalStorageRepository } from '../../../infrastructure/repositories/loc
 
 export class Stock {
   private _liveAnnouncer = inject(LiveAnnouncer);
+  localStoreMoviments?: LocalStorageRepository
 
   displayedColumnsMove: string[] = ['id', 'create_at', 'description', 'cod_product', 'qtd', 'actions'];
   dataSourceMove = new MatTableDataSource();
@@ -27,8 +28,8 @@ export class Stock {
   @ViewChild(MatPaginator) paginator?: MatPaginator;
 
   ngAfterViewInit() {
-    const localStoreMoviments = new LocalStorageRepository('moviments')
-    this.dataSourceMove.data = localStoreMoviments.getAll()
+    this.localStoreMoviments = new LocalStorageRepository('moviments')
+    this.dataSourceMove.data = this.localStoreMoviments.getAll()
 
     this.dataSourceMove.sort = this.sort;
     this.dataSourceMove.paginator = this.paginator;
@@ -50,9 +51,20 @@ export class Stock {
     return value.replace(/(\d{4})-(\d{2})-(\d{2})(.*)/, '$1-$2-$3')
   }
 
-  save(data: string): void {
-    console.log('pai tratando os dados enviados pelo filho')
-    console.log(data)
+  save(data: any): void {
+    const _data = {
+      id: data.id,
+      create_at: new Date().toISOString(),
+      description: data.decription,
+      cod_product: data.id_product,
+      qtd: data.qtd,
+    };
+
+    this.localStoreMoviments?.add(_data)
+  }
+
+  remove() {
+
   }
 }
 
