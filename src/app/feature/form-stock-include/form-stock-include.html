@@ -1,0 +1,45 @@
+<div class="w-full">
+    <h2 class="mb-5 text-base">Incluir nova movimentação</h2>
+
+    <div class="flex flex-col lg:flex-row gap-3">
+        <mat-form-field class="xs:w-full lg:w-1/6">
+            <mat-label>id:</mat-label>
+            <input matInput readonly [value]="idmove" disabled />
+        </mat-form-field>
+
+        <mat-form-field class="w-full lg:w-1/3">
+            <mat-label>Descrição</mat-label>
+            <input matInput (blur)="updateErrorMessage()" [formControl]="description" required />
+            @if (description.invalid) {
+            <mat-error>{{errorMessageDescription()}}</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="w-full lg:w-1/4">
+            <mat-label>Produto</mat-label>
+            <mat-select [(ngModel)]="selectedProductId">
+                @for (item of products; track item.id) {
+                <mat-option value="item.id">{{item.name}}</mat-option>
+                } @empty {
+                <mat-option value="0"> Sem produtos </mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-full lg:w-1/4">
+            <mat-label>Quantidade</mat-label>
+            <input matInput [formControl]="qtd" (blur)="updateErrorMessage()" required />
+
+            @if (qtd.invalid) {
+            <mat-error>{{errorMessageQtd()}}</mat-error>
+            }
+        </mat-form-field>
+    </div>
+
+    <div class="w-full flex justify-center lg:justify-end">
+        <button matButton="elevated" aria-label="Botão de cadastrar nova movimentação">
+            Salvar
+            <!-- <mat-icon>save</mat-icon> -->
+        </button>
+    </div>
+</div>
