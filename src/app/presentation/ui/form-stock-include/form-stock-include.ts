@@ -8,7 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { v7 as uuid } from 'uuid'
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const DESCRIPTIONS = {
   MIN_CHAR: 6,
@@ -26,11 +26,14 @@ const DESCRIPTIONS = {
     ReactiveFormsModule,
     MatSelectModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormStockInclude {
+  readonly panelOpenState = signal(false);
+
   @Output() save = new EventEmitter<any>();
 
   products = DATA_PRODUCT
