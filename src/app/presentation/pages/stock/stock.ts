@@ -8,13 +8,13 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { FormStockInclude } from '../../ui/form-stock-include/form-stock-include';
 import { LocalStorageRepository } from '../../../infrastructure/repositories/local-storage-repository';
-
+import { Filter } from '../../ui/filter/filter';
 
 @Component({
   selector: 'app-stock',
   templateUrl: './stock.html',
   styleUrl: './stock.css',
-  imports: [MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, FormStockInclude],
+  imports: [MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, FormStockInclude, Filter],
 })
 
 export class Stock {

@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center w-screen">
-    <div class="container">
+    <div class="container px-4">
 
         <div class="row mt-10 mb-8">
             <h1 class="text-4xl">Movimentações</h1>
@@ -14,6 +14,8 @@
         <div class="overflow-x-auto">
 
             <h2 class="my-8 text-2xl">Lista de movimentações</h2>
+
+            <app-filter></app-filter>
 
             <table mat-table [dataSource]="dataSourceMove" matSort (matSortChange)="announceSortChange($event)"
                 class="">
@@ -62,9 +64,7 @@
                             delete
                         </mat-icon>
                     </td>
-
                 </ng-container>
-
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumnsMove"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumnsMove;"></tr>
