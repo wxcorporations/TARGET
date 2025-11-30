@@ -38,7 +38,7 @@ const DESCRIPTIONS = {
   ],
 })
 export class Filter {
-  @Output() filter = new EventEmitter<any>();
+  @Output() onfilter = new EventEmitter<any>();
   readonly panelOpenState = signal(false);
 
   // dados de controle de interface
@@ -68,7 +68,7 @@ export class Filter {
   }
 
   emitFilter() {
-    console.log({
+    this.onfilter.emit({
       id: this.idmove(),
       description: this.description(),
       product_id: this.selectedProductId(),
@@ -76,7 +76,6 @@ export class Filter {
     })
 
     this.resetForm()
-    this.filter.emit('---------------- filtro ----------------')
   }
 
   resetForm() {

@@ -3,7 +3,7 @@
         (closed)="panelOpenState.set(false)">
 
         <mat-expansion-panel-header>
-            <div class="w-full flex ">
+            <div class="w-full flex">
                 <button matButton>
                     <mat-icon>filter_alt</mat-icon>
                     filtros
@@ -11,7 +11,7 @@
             </div>
         </mat-expansion-panel-header>
 
-        <div class="flex flex-col lg:flex-row justify-start itens-center gap-4">
+        <div class="flex flex-col lg:flex-row justify-center itens-center gap-4">
             <mat-form-field class="xs:w-full lg:w-[200px]">
                 <mat-label>id:</mat-label>
                 <input matInput [(ngModel)]="idmove" />
@@ -23,12 +23,8 @@
             </mat-form-field>
 
             <mat-form-field class="w-full lg:w-[200px]">
-                <mat-label>Produto</mat-label>
-                <mat-select [(ngModel)]="selectedProductId">
-                    @for (item of products; track item.id) {
-                    <mat-option value="{{item.id}}">{{item.name}}</mat-option>
-                    }
-                </mat-select>
+                <mat-label>Id do produto</mat-label>
+                <input matInput required [(ngModel)]="selectedProductId" />
             </mat-form-field>
 
             <mat-form-field>
@@ -47,12 +43,13 @@
                 <mat-error>Invalid end date</mat-error>
                 }
             </mat-form-field>
+        </div>
 
-            <button matButton (click)="emitFilter()">
+        <div class="w-full flex justify-end">
+            <button matButton="filled" (click)="emitFilter()">
                 <mat-icon>filter_alt</mat-icon>
                 Filtar
             </button>
-
         </div>
 
     </mat-expansion-panel>
