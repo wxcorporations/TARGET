@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { FormStockInclude } from '../../ui/form-stock-include/form-stock-include';
 import { LocalStorageRepository } from '../../../infrastructure/repositories/local-storage-repository';
-import { Filter } from '../../ui/filter/filter';
 import { Movement } from '../../../domain/moviment';
 
 import { ToastrService } from 'ngx-toastr';
@@ -18,7 +17,7 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-commissions',
   templateUrl: './commissions.html',
   styleUrl: './commissions.css',
-  imports: [MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule, FormStockInclude, Filter],
+  imports: [MatTableModule, MatSortModule, MatPaginatorModule, MatIconModule],
 })
 export class Commissions {
   private _liveAnnouncer = inject(LiveAnnouncer);
