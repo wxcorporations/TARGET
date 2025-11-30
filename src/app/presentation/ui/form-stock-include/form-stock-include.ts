@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal, Output, EventEmitter } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, FormsModule, MinLengthValidator, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { merge } from 'rxjs';
@@ -34,15 +34,15 @@ const DESCRIPTIONS = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormStockInclude {
-  readonly panelOpenState = signal(false);
-
   @Output() save = new EventEmitter<any>();
 
-  localStoreMoviments: any;
-  products: any;
+  readonly panelOpenState = signal(false);
+  readonly create_at = new Date().toISOString()
 
   idmove = uuid()
-  readonly create_at = new Date().toISOString()
+  products: any;
+  selectedProductId = 0;
+  localStoreMoviments: any;
 
   description = new FormControl('', [
     Validators.required,
@@ -51,7 +51,6 @@ export class FormStockInclude {
   ]);
   qtd = new FormControl(0, [Validators.required]);
   product = new FormControl({}, [Validators.required]);
-  selectedProductId = 0;
 
   errorMessageQtd = signal('');
   errorMessageProduct = signal('');

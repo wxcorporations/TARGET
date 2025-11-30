@@ -6,12 +6,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 
-import { FormStockInclude } from '../../ui/form-stock-include/form-stock-include';
 import { LocalStorageRepository } from '../../../infrastructure/repositories/local-storage-repository';
-import { Movement } from '../../../domain/moviment';
-
-import { ToastrService } from 'ngx-toastr';
-
 
 @Component({
   selector: 'app-commissions',
@@ -57,9 +52,4 @@ export class Commissions {
     const data = (await response.json());
     return data;
   }
-
-  formateDate(value: string): string {
-    return value.replace(/(\d{4})-(\d{2})-(\d{2})(.*)/, '$1-$2-$3');
-  }
-
 }

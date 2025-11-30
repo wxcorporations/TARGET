@@ -21,6 +21,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class Stock {
+  // dados tabela
+  // ===============================================================================
   private _liveAnnouncer = inject(LiveAnnouncer);
   localStoreMoviments?: LocalStorageRepository
 
@@ -46,10 +48,6 @@ export class Stock {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
-  }
-
-  doubleClick(data: string) {
-    console.log(data)
   }
 
   formateDate(value: string): string {
