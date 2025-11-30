@@ -11,6 +11,8 @@ import { LocalStorageRepository } from '../../../infrastructure/repositories/loc
 import { Filter } from '../../ui/filter/filter';
 import { Movement } from '../../../domain/moviment';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-stock',
   templateUrl: './stock.html',
@@ -27,6 +29,8 @@ export class Stock {
 
   @ViewChild(MatSort) sort?: MatSort;
   @ViewChild(MatPaginator) paginator?: MatPaginator;
+
+  constructor(private toastr: ToastrService) { }
 
   ngAfterViewInit() {
     this.localStoreMoviments = new LocalStorageRepository('moviments')
@@ -63,13 +67,19 @@ export class Stock {
 
     this.localStoreMoviments?.add(_data)
     this.dataSourceMove.data = this.localStoreMoviments?.getAll() || []
+
+    this.toastr.success('Operação realizada com sucesso!', 'Sucesso');
   }
 
   remove(id: string): void {
-    alert('voce tem certeza')
-    this.localStoreMoviments?.remove(id)
+    const resp = window.confirm('Você confirma a remoção?')
 
-    this.dataSourceMove.data = this.localStoreMoviments?.getAll() || []
+    if (resp) {
+      this.localStoreMoviments?.remove(id)
+      this.dataSourceMove.data = this.localStoreMoviments?.getAll() || []
+
+      this.toastr.success('Operação realizada com sucesso!', 'Sucesso');
+    }
   }
 
   filterMoviment(data: any): void {
@@ -80,74 +90,14 @@ export class Stock {
       !data.date.start &&
       !data.date.end
     ) {
+
       this.dataSourceMove.data = this.localStoreMoviments?.getAll() || []
+      this.toastr.success('Operação realizada com sucesso!', 'Sucesso');
 
     } else {
-      console.log(data)
       const movi = new Movement(this.dataSourceMove.data)
-
       this.dataSourceMove.data = movi.filter(data)
+      this.toastr.success('Operação realizada com sucesso!', 'Sucesso');
     }
   }
 }
-
-export interface IProductForTemplate {
-  codigo_produto: number,
-  descricao_produto: string,
-  estoque: number,
-  unidade: string,
-  actions: string[]
-}
-
-const ESTOQUE = [
-  {
-    codigo_produto: 101,
-    descricao_produto: "Caneta Azul",
-    estoque: 150,
-    unidade: "UN:1|CX:12",
-
-  },
-
-  {
-    codigo_produto: 102,
-    descricao_produto: "Caderno Universitário",
-    estoque: 75,
-    unidade: "UN:1|CX:10",
-
-  },
-  {
-    codigo_produto: 103,
-    descricao_produto: "Borracha Branca",
-    estoque: 200,
-    unidade: "UN:1|DP:5|CX:20",
-
-  },
-  {
-    codigo_produto: 104,
-    descricao_produto: "Lápis Preto HB",
-    estoque: 320,
-    unidade: "UN:1|DP:6|CX:24",
-
-  },
-  {
-    codigo_produto: 105,
-    descricao_produto: "Marcador de Texto Amarelo",
-    estoque: 90,
-    unidade: "UN:1|CX:6",
-
-  },
-  {
-    codigo_produto: 101,
-    descricao_produto: "Caneta Azul",
-    estoque: 10,
-    unidade: "UN:1|CX:12",
-
-  },
-  {
-    codigo_produto: 101,
-    descricao_produto: "Caneta Azul",
-    estoque: 250,
-    unidade: "UN:1|CX:12",
-
-  },
-]

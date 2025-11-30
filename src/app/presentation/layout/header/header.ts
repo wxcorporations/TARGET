@@ -16,7 +16,6 @@ import { MatMenuModule } from '@angular/material/menu';
 export class Header {
   shouldRun = false;
 
-
   toggleMenu() {
     this.shouldRun = !this.shouldRun
   }
