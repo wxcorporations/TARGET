@@ -1,60 +1,35 @@
 # TargetFront
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.1.
+Projeto de interface responsável por consumir a **TARGET-API** e exibir a **tabela de comissões** no frontend.
 
-## Development server
+---
 
-To start a local development server, run:
+## Pré-requisitos
 
-```bash
-ng serve
-```
+- Node.js e npm instalados na máquina. 
+- Projeto **TARGET-API** configurado e funcional (será o provedor dos dados de comissão).  
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Passo a passo para rodar o projeto
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. **Inicie a TARGET-API**
 
-```bash
-ng generate component component-name
-```
+    [respositorio target-api](https://github.com/wxcorporations/TARGET-API)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+    Certifique-se de subir o projeto de backend **TARGET-API**, pois ele disponibilizará os dados necessários para a tabela de comissões consumida pelo TargetFront.
+<br>
+1. **Instale as dependências do TargetFront**
+   
+    No diretório do projeto **TARGET-FRONT**, execute:
 
-```bash
-ng generate --help
-```
 
-## Building
+    **dependencias**
+    ```shell
+    npm i
+    ```
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# TARGET
+    **rodar projeto**
+    ```shell
+    npm run start
+    ```
