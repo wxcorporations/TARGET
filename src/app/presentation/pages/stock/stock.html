@@ -5,17 +5,17 @@
             <h1 class="text-4xl">Movimentações</h1>
         </div>
 
-        <div class="row my-5">
-            <h2 class="my-8 text-2xl">Incluir nova movimentação</h2>
-            <app-form-stock-include (save)="save($event)" />
-        </div>
-
         <!-- TABELA -->
         <div class="overflow-x-auto">
 
             <h2 class="my-8 text-2xl">Lista de movimentações</h2>
 
-            <app-filter></app-filter>
+            <div class="mb-10">
+                <app-form-stock-include (save)="save($event)" />
+            </div>
+            <div>
+                <app-filter></app-filter>
+            </div>
 
             <table mat-table [dataSource]="dataSourceMove" matSort (matSortChange)="announceSortChange($event)"
                 class="">
