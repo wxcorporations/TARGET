@@ -2,3 +2,33 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Sucesso */
+.toast-success,
+.toast-success .mat-mdc-snack-bar-label,
+.toast-success .mdc-snackbar__surface {
+    display: inline-block;
+    padding: 20px;
+    position: fixed;
+    top: 20px;
+    left: 0;
+    margin: 0 auto;
+    z-index: 1000;
+    background-color: #16a34a !important; /* verde */
+    color: #ffffff !important;
+}
+
+/* Erro */
+.toast-error,
+.toast-error .mat-mdc-snack-bar-label,
+.toast-error .mdc-snackbar__surface {
+    display: inline-block;
+    padding: 20px;
+    top: 20px;
+    left: 0;
+    margin: 0 auto;
+    z-index: 1000;
+    position: fixed;
+    background-color: #dc2626 !important; /* vermelho */
+    color: #ffffff !important;
+}
