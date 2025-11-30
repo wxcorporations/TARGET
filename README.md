@@ -4,6 +4,10 @@ Projeto de interface responsável por consumir a **TARGET-API** e exibir a **tab
 
 ---
 
+## Layout
+![alt text](/doc/image.png)
+
+
 ## Pré-requisitos
 
 - Node.js e npm instalados na máquina. 
