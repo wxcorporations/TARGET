@@ -18,8 +18,6 @@ export class CreateStores {
             return
         }
 
-        console.log('============ criando os dados ======================')
-
         const dataProducts = new CreateProduts(100)
         dataProducts.execute()
 

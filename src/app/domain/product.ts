@@ -4,10 +4,6 @@ export type IProduct = {
 };
 
 export class Product {
-    constructor() {
-
-    }
-
+    constructor() { }
     // criar um novo produto 
-
 }

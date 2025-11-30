@@ -41,10 +41,6 @@ export class Filter {
   @Output() onfilter = new EventEmitter<any>();
   readonly panelOpenState = signal(false);
 
-  // dados de controle de interface
-  // --------------------------------------------------------
-
-
   // dados da local store
   // --------------------------------------------------------
   localStoreMoviments: any;
