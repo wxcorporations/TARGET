@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { LocalStorageRepository } from '../../../infrastructure/repositories/local-storage-repository';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 const DESCRIPTIONS = {
   MIN_CHAR: 6,
@@ -22,6 +24,7 @@ const DESCRIPTIONS = {
   templateUrl: './filter.html',
   styleUrl: './filter.css',
   providers: [provideNativeDateAdapter()],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MatFormFieldModule,
     MatInputModule,
@@ -31,9 +34,12 @@ const DESCRIPTIONS = {
     MatIconModule,
     MatButtonModule,
     MatDatepickerModule,
+    MatExpansionModule
   ],
 })
 export class Filter {
+  readonly panelOpenState = signal(false);
+
   @Output() filter = new EventEmitter<any>();
 
   readonly range = new FormGroup({
