@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, Output, EventEmitter, effect, WritableSignal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormsModule, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -38,45 +38,52 @@ const DESCRIPTIONS = {
   ],
 })
 export class Filter {
+  @Output() filter = new EventEmitter<any>();
   readonly panelOpenState = signal(false);
 
-  @Output() filter = new EventEmitter<any>();
+  // dados de controle de interface
+  // --------------------------------------------------------
+
+
+  // dados da local store
+  // --------------------------------------------------------
+  localStoreMoviments: any;
+  products?: any;
+
+  // dados formularios
+  // --------------------------------------------------------
+  idmove = signal('');
+  description = signal('');
+  product = signal('');
+  selectedProductId = signal(0);
 
   readonly range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
 
-  localStoreMoviments: any;
-  products?: any;
-
   ngAfterViewInit() {
     this.localStoreMoviments = new LocalStorageRepository('products')
     this.products = this.localStoreMoviments.getAll()
   }
 
-  readonly idmove?: string;
-  readonly description?: string;
-  readonly product?: number | string;
-
-  selectedProductId = 0;
-
   emitFilter() {
     console.log({
-      id: this.idmove,
-      description: this.description,
-      product_id: this.selectedProductId,
+      id: this.idmove(),
+      description: this.description(),
+      product_id: this.selectedProductId(),
       date: this.range.value
     })
+
+    this.resetForm()
     this.filter.emit('---------------- filtro ----------------')
   }
-  // por intervalo de tempo
 
-  // por id
+  resetForm() {
+    this.idmove.set('')
+    this.description.set('')
+    this.selectedProductId.set(0)
+    this.range.reset()
+  }
 
-  // descricao
-
-  // por id do produto
-
-  // datepicker
 }
