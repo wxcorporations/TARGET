@@ -9,6 +9,7 @@ import { v7 as uuid } from 'uuid'
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { LocalStorageRepository } from '../../../infrastructure/repositories/local-storage-repository';
 
 const DESCRIPTIONS = {
   MIN_CHAR: 6,
@@ -36,18 +37,19 @@ export class FormStockInclude {
 
   @Output() save = new EventEmitter<any>();
 
-  products = DATA_PRODUCT
+  localStoreMoviments: any;
+  products: any;
 
-  readonly idmove = uuid()
+  idmove = uuid()
   readonly create_at = new Date().toISOString()
 
-  readonly description = new FormControl('', [
+  description = new FormControl('', [
     Validators.required,
     Validators.minLength(DESCRIPTIONS.MIN_CHAR),
     Validators.maxLength(DESCRIPTIONS.MAX_CHAR)
   ]);
-  readonly qtd = new FormControl(0, [Validators.required]);
-  readonly product = new FormControl({}, [Validators.required]);
+  qtd = new FormControl(0, [Validators.required]);
+  product = new FormControl({}, [Validators.required]);
   selectedProductId = 0;
 
   errorMessageQtd = signal('');
@@ -58,6 +60,12 @@ export class FormStockInclude {
     merge(this.description.statusChanges, this.description.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
+  }
+
+
+  ngAfterViewInit() {
+    this.localStoreMoviments = new LocalStorageRepository('products')
+    this.products = this.localStoreMoviments.getAll()
   }
 
   updateErrorMessage() {
@@ -85,38 +93,34 @@ export class FormStockInclude {
 
   }
 
-  emitSave() {
-    const data = {
-      id: this.idmove,
-      decription: this.description.value,
-      id_product: this.selectedProductId,
-      qtd: this.qtd.value
+  hasErro() {
+    this.updateErrorMessage()
+    return Boolean(this.description.errors) || Boolean(this.qtd.errors) || this.selectedProductId === 0
+  }
 
+  emitSave() {
+
+
+
+    if (!this.hasErro()) {
+
+      console.log('id produto => ', this.selectedProductId)
+
+      this.save.emit({
+        id: this.idmove,
+        decription: this.description.value,
+        product_id: this.selectedProductId,
+        qtd: this.qtd.value
+
+      })
+      this.resetForm()
     }
-    this.save.emit(data)
+  }
+
+  private resetForm() {
+    this.idmove = uuid()
+    this.description.setValue('')
+    this.selectedProductId = 0
+    this.qtd.setValue(0)
   }
 }
-
-// LISTA DE PRODUTOS
-const DATA_PRODUCT = [
-  {
-    id: 101,
-    name: "Caneta Azul",
-  },
-  {
-    id: 102,
-    name: "Caderno Universitário",
-  },
-  {
-    id: 103,
-    name: "Borracha Branca",
-  },
-  {
-    id: 104,
-    name: "Lápis Preto HB",
-  },
-  {
-    id: 105,
-    name: "Marcador de Texto Amarelo",
-  }
-]

@@ -1,7 +1,7 @@
 <mat-accordion class="w-full ">
     <mat-expansion-panel hideToggle class="mat-elevation-z0">
         <mat-expansion-panel-header>
-            <div class="w-full flex justify-center">
+            <div class="w-full flex justify-start">
                 <button matButton>
                     <mat-icon>add_circle</mat-icon> <!-- círculo com + -->
                     Adicionar movimentação
@@ -12,40 +12,45 @@
         <div>
             <h2 class="mb-5 text-base">Cadastre sua movimentação</h2>
 
-            <div class="flex flex-wrap flex-col lg:flex-row gap-3">
-                <div class="w-full row">
+            <div class="w-full">
+                <div class="w-full flex justify-end row mb-2">
                     <span class="text-xs font-semibold">
                         Id: {{idmove}}
                     </span>
                 </div>
-
-                <mat-form-field class="w-full lg:w-1/3">
-                    <mat-label>Descrição</mat-label>
-                    <input matInput (blur)="updateErrorMessage()" [formControl]="description" required />
-                    @if (description.invalid) {
-                    <mat-error>{{errorMessageDescription()}}</mat-error>
-                    }
-                </mat-form-field>
-
-                <mat-form-field class="w-full lg:w-1/4">
-                    <mat-label>Produto</mat-label>
-                    <mat-select [(ngModel)]="selectedProductId">
-                        @for (item of products; track item.id) {
-                        <mat-option value="{{item.id}}">{{item.name}}</mat-option>
+                <div class="flex flex-col lg:flex-row gap-3">
+                    <mat-form-field class="w-full lg:w-2/5">
+                        <mat-label>Descrição</mat-label>
+                        <input matInput (blur)="updateErrorMessage()" [formControl]="description" required />
+                        @if (description.invalid) {
+                        <mat-error>{{errorMessageDescription()}}</mat-error>
                         }
-                    </mat-select>
-                </mat-form-field>
+                    </mat-form-field>
 
-                <mat-form-field class="w-full lg:w-1/4">
-                    <mat-label>Quantidade</mat-label>
-                    <input matInput [formControl]="qtd" (blur)="updateErrorMessage()" required />
+                    <mat-form-field class="w-full lg:w-2/5">
+                        <mat-label>Produto</mat-label>
+                        <mat-select [(ngModel)]="selectedProductId">
+                            @for (item of products; track item.id) {
+                            <mat-option value="{{item.id}}">{{item.name}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
 
-                    @if (qtd.invalid) {
-                    <mat-error>{{errorMessageQtd()}}</mat-error>
-                    }
-                </mat-form-field>
+                    <mat-form-field class="w-full lg:w-auto">
+                        <mat-label>Quantidade</mat-label>
+                        <input matInput [formControl]="qtd" (blur)="updateErrorMessage()" required />
 
-                <button matButton (click)="emitSave()">
+                        @if (qtd.invalid) {
+                        <mat-error>{{errorMessageQtd()}}</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+
+            </div>
+
+            <div class="w-full flex justify-end">
+                <button matButton="filled" (click)="emitSave()">
                     <mat-icon>save</mat-icon> <!-- círculo com + -->
                     salvar
                 </button>
