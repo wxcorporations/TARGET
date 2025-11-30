@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormStockInclude } from '../../ui/form-stock-include/form-stock-include';
 import { LocalStorageRepository } from '../../../infrastructure/repositories/local-storage-repository';
 import { Filter } from '../../ui/filter/filter';
+import { Movement } from '../../../domain/moviment';
 
 @Component({
   selector: 'app-stock',
@@ -56,7 +57,7 @@ export class Stock {
       id: data.id,
       create_at: new Date().toISOString(),
       description: data.decription,
-      cod_product: data.id_product,
+      cod_product: data.product_id,
       qtd: data.qtd,
     };
 
@@ -69,6 +70,24 @@ export class Stock {
     this.localStoreMoviments?.remove(id)
 
     this.dataSourceMove.data = this.localStoreMoviments?.getAll() || []
+  }
+
+  filterMoviment(data: any): void {
+    if (
+      !data.id &&
+      !data.description &&
+      !data.product_id &&
+      !data.date.start &&
+      !data.date.end
+    ) {
+      this.dataSourceMove.data = this.localStoreMoviments?.getAll() || []
+
+    } else {
+      console.log(data)
+      const movi = new Movement(this.dataSourceMove.data)
+
+      this.dataSourceMove.data = movi.filter(data)
+    }
   }
 }
 

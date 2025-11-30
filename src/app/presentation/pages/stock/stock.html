@@ -7,14 +7,12 @@
 
         <!-- TABELA -->
         <div class="overflow-x-auto">
-
-            <h2 class="my-8 text-2xl">Lista de movimentações</h2>
-
-            <div class="mb-10">
-                <app-form-stock-include (save)="save($event)" />
+            <div class="flex justify-center">
+                <h2 class="my-8 text-2xl">Lista de movimentações</h2>
             </div>
+
             <div>
-                <app-filter></app-filter>
+                <app-filter (onfilter)="filterMoviment($event)"></app-filter>
             </div>
 
             <table mat-table [dataSource]="dataSourceMove" matSort (matSortChange)="announceSortChange($event)"
@@ -74,4 +72,8 @@
             <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
                 aria-label="Select page of periodic elements">
             </mat-paginator>
+        </div>
+
+        <div class="mb-10">
+            <app-form-stock-include (save)="save($event)" />
         </div>
