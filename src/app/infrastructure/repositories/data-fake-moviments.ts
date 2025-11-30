@@ -1,7 +1,7 @@
 import { fakerPT_BR as faker } from '@faker-js/faker';
 import { IMovement } from '../../domain/moviment';
 import { IProduct } from '../../domain/product';
-
+import { v7 as uuid } from 'uuid'
 
 const CONFIG = {
     DATE_INIT: '2020-01-01',
@@ -25,7 +25,7 @@ export class DataFakerMoviments {
         const product = faker.helpers.arrayElement(products);
 
         return {
-            id: DataFakerMoviments.lastId,
+            id: uuid(),
             create_at: between.toISOString(),
             description: product.name,
             cod_product: product.id,
